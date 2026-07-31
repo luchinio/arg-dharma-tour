@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Argentina Dharma Tour 2026 — Khenpo Samdup Rinpoche</title>
+<meta name="description" content="Khenpo Samdup Rinpoche visita Argentina por primera vez. Argentina Dharma Tour 2026: encuentros confirmados el 28, 29 y 30 de agosto en Maschwitz, Buenos Aires y Miramar/Mar del Plata. Organizan Modo Flow & AQRA.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FFF5EB',
+          brown: {
+            DEFAULT: '#80481B',
+            muted: '#AD886A',
+            dark: '#4A2A10',
+          },
+        },
+        fontFamily: {
+          serif: ['"Instrument Serif"', 'serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #FFF5EB; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .12s; }
+  .reveal-delay-2 { transition-delay: .24s; }
+  .reveal-delay-3 { transition-delay: .36s; }
+
+  .hero-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroWordIn .9s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  @keyframes heroWordIn { to { opacity: 1; transform: translateY(0); } }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s cubic-bezier(.22,.61,.36,1), padding-top .5s ease;
+  }
+  .faq-item.open .faq-answer { max-height: 320px; }
+  .faq-item .faq-icon { transition: transform .35s ease; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .placeholder-photo {
+    background: repeating-linear-gradient(135deg, #AD886A22, #AD886A22 10px, #80481B11 10px, #80481B11 20px);
+  }
+
+  /* header: cream/transparent over hero, solid + brown text once scrolled.
+     It hides while scrolling through the hero, then reappears already
+     switched to the solid/brown state. */
+  #mainHeader {
+    background-color: transparent;
+    transform: translateY(0);
+    transition: background-color .35s ease, backdrop-filter .35s ease, transform .35s ease;
+  }
+  #mainHeader.header-hidden {
+    transform: translateY(-110%);
+  }
+  #mainHeader .nav-link,
+  #mainHeader .logo-text,
+  #mainHeader .cta-btn {
+    color: #FFF5EB;
+    transition: color .35s ease, border-color .35s ease, background-color .35s ease;
+  }
+  #mainHeader .cta-btn { border-color: rgba(255,245,235,0.7); }
+  #mainHeader .cta-btn:hover { background-color: #FFF5EB; color: #80481B; }
+  #mainHeader .menu-icon { stroke: #FFF5EB; transition: stroke .35s ease; }
+
+  #mainHeader.is-scrolled {
+    background-color: rgba(255,245,235,0.85);
+    backdrop-filter: blur(8px);
+  }
+  #mainHeader.is-scrolled .nav-link,
+  #mainHeader.is-scrolled .logo-text,
+  #mainHeader.is-scrolled .cta-btn {
+    color: #80481B;
+  }
+  #mainHeader.is-scrolled .cta-btn { border-color: rgba(128,72,27,0.6); }
+  #mainHeader.is-scrolled .cta-btn:hover { background-color: #80481B; color: #FFF5EB; }
+  #mainHeader.is-scrolled .menu-icon { stroke: #80481B; }
+</style>
+</head>
+
+<body class="font-sans text-brown antialiased">
+
+<!-- NAV -->
+<header id="mainHeader" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+    <a href="#" class="logo-text font-serif text-2xl">Argentina Dharma Tour</a>
+    <nav class="hidden md:flex items-center gap-9 text-xs uppercase tracking-wide">
+      <a href="#gira" class="nav-link hover:opacity-70 transition-opacity">La Gira</a>
+      <a href="#khempo" class="nav-link hover:opacity-70 transition-opacity">Sobre Khempo</a>
+      <a href="#experiencias" class="nav-link hover:opacity-70 transition-opacity">Experiencias</a>
+      <a href="#faq" class="nav-link hover:opacity-70 transition-opacity">Preguntas</a>
+    </nav>
+    <a href="#contacto" class="cta-btn hidden md:inline-block border text-xs uppercase tracking-wide px-6 py-3 transition-colors">Quiero sumarme</a>
+    <button id="menuBtn" class="md:hidden" aria-label="Abrir menú">
+      <svg class="menu-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden bg-cream border-t border-brown/10 px-6 py-6 flex flex-col gap-5 text-sm uppercase tracking-wide text-brown">
+    <a href="#gira">La Gira</a>
+    <a href="#khempo">Sobre Khempo</a>
+    <a href="#experiencias">Experiencias</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#contacto" class="border border-brown/60 text-center py-3">Quiero sumarme</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="relative h-screen min-h-[640px] flex items-end overflow-hidden">
+  <img src="images/khempo-fuego.jpg"
+       alt="Khenpo Samdup Rinpoche durante una ceremonia con fuego"
+       class="absolute inset-0 w-full h-full object-cover object-[60%_30%] scale-110">
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30"></div>
+  <div class="relative z-10 w-full px-6 md:px-10 pb-16 md:pb-24">
+    <p class="reveal text-cream/80 text-xs md:text-sm uppercase tracking-[0.2em] mb-5">Argentina Dharma Tour 2026 · Encuentros confirmados: 28, 29 y 30 de agosto</p>
+    <h1 class="font-serif text-cream leading-[0.95] text-[12vw] md:text-[5.4vw] mb-8">
+      <span class="block overflow-hidden pb-1">
+        <span class="hero-word" style="animation-delay:.05s">Del&nbsp;</span><span class="hero-word" style="animation-delay:.15s">bosque&nbsp;</span><span class="hero-word" style="animation-delay:.25s">al&nbsp;</span><span class="hero-word" style="animation-delay:.35s">mar,</span>
+      </span>
+      <span class="block italic overflow-hidden pb-1">
+        <span class="hero-word" style="animation-delay:.45s">un&nbsp;</span><span class="hero-word" style="animation-delay:.55s">camino&nbsp;</span><span class="hero-word" style="animation-delay:.65s">hacia&nbsp;</span><span class="hero-word" style="animation-delay:.75s">la&nbsp;</span><span class="hero-word" style="animation-delay:.85s">presencia.</span>
+      </span>
+    </h1>
+    <p class="reveal reveal-delay-1 text-cream/90 text-base md:text-lg max-w-xl mb-8">Khenpo Samdup Rinpoche visita Argentina por primera vez. Tres encuentros confirmados, un mismo propósito: volver a estar presentes.</p>
+    <a href="#contacto" class="reveal reveal-delay-2 inline-block border border-cream/70 text-cream text-xs uppercase tracking-wide px-8 py-4 hover:bg-cream hover:text-brown transition-colors">Quiero sumarme</a>
+  </div>
+</section>
+
+<!-- LA GIRA -->
+<section id="gira" class="py-24 md:py-36 px-6 md:px-10">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="reveal font-serif text-brown text-[9vw] md:text-6xl leading-[1.05] mb-10">
+      Una gira,<br class="hidden md:block"> <span class="italic">tres encuentros</span>
+    </h2>
+    <p class="reveal reveal-delay-1 text-brown/85 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
+      Khenpo Samdup Rinpoche, maestro del linaje Drikung Kagyu y discípulo cercano de S.E. Garchen Rinpoche, llega a la Argentina por primera vez en el marco del Argentina Dharma Tour 2026.
+    </p>
+    <p class="reveal reveal-delay-1 text-brown/85 text-lg leading-relaxed max-w-2xl mx-auto">
+      Del 28 al 30 de agosto va a recorrer tres lugares muy distintos: Maschwitz, el Jardín Botánico de Buenos Aires, y el cierre en Miramar y Mar del Plata. Tres encuentros, un mismo propósito: compartir la práctica y volver, aunque sea por un rato, a estar presentes.
+    </p>
+  </div>
+
+  <!-- itinerario -->
+  <div class="max-w-6xl mx-auto mt-20 md:mt-24 grid md:grid-cols-3 gap-6 md:gap-4 text-center">
+    <div class="reveal border-t-2 border-brown pt-6">
+      <p class="text-xs uppercase tracking-wide text-brown/60 mb-2">Viernes 28 de agosto</p>
+      <p class="font-serif text-2xl mb-2">Maschwitz</p>
+      <p class="text-sm text-brown/70">Dhammapada Budismo Zen — enseñanzas de Dharma y espacio infantil con actividades paralelas</p>
+    </div>
+    <div class="reveal reveal-delay-1 border-t-2 border-brown pt-6">
+      <p class="text-xs uppercase tracking-wide text-brown/60 mb-2">Sábado 29 de agosto</p>
+      <p class="font-serif text-2xl mb-2">Buenos Aires</p>
+      <p class="text-sm text-brown/70">Jardín Botánico — walking meditation, enseñanzas de Dharma y ceremonia de toma de refugio</p>
+    </div>
+    <div class="reveal reveal-delay-2 border-t-2 border-brown pt-6">
+      <p class="text-xs uppercase tracking-wide text-brown/60 mb-2">Domingo 30 de agosto</p>
+      <p class="font-serif text-2xl mb-2">Miramar &amp; Mar del Plata</p>
+      <p class="text-sm text-brown/70">Mañana: terapia con árboles y walking meditation en Miramar. Cierre: ceremonia del té en Playa Luna Roja, Mar del Plata</p>
+    </div>
+  </div>
+  <p class="reveal text-center text-xs text-brown-muted mt-8 max-w-xl mx-auto">Encuentros confirmados por la organización (Modo Flow &amp; AQRA). Inscripción accesible y cupos limitados en cada sede — el detalle de valores se confirma al anotarte.</p>
+</section>
+
+<!-- QUOTE / IMAGE SECTION -->
+<section class="relative py-40 md:py-56 px-6 flex items-center justify-center text-center overflow-hidden">
+  <img src="images/tara-stupa-tulum.jpg" alt="Stupa y centro de retiro entre la selva y el mar" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative z-10 max-w-3xl mx-auto">
+    <p class="reveal font-serif text-cream text-2xl md:text-4xl leading-snug mb-8">"Todas las enseñanzas del Buda son excelentes; dentro de ese reconocimiento, sientes gratitud hacia tu propio linaje."</p>
+    <p class="reveal reveal-delay-1 text-cream/80 text-sm uppercase tracking-wide">— S.E. Garchen Rinpoche</p>
+  </div>
+</section>
+
+<!-- SOBRE KHEMPO -->
+<section id="khempo" class="py-24 md:py-36 px-6 md:px-10">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="reveal font-serif text-center text-[9vw] md:text-6xl leading-[1.05] mb-16 md:mb-24">
+      Quién es <span class="italic">Khenpo Samdup Rinpoche</span>
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+      <img src="images/khempo.jpeg" alt="Khenpo Samdup Rinpoche enseñando" class="reveal w-full h-[420px] md:h-[640px] object-cover object-top md:sticky md:top-28">
+
+      <div class="reveal reveal-delay-1 flex flex-col gap-8">
+        <p class="text-brown/85 leading-relaxed">
+          Khenpo Samdup Rinpoche nació en Kham, al este del Tíbet. Discípulo de S.E. Garchen Rinpoche desde los siete años, fue ordenado monje a los doce e inició su formación en el Monasterio Gar.
+        </p>
+        <p class="text-brown/85 leading-relaxed">
+          Más tarde completó sus estudios de filosofía budista en India, donde también ejerció como profesor y autor de un importante comentario sobre <em>La Intención Única</em> (Gongchik), texto fundamental del linaje Drikung Kagyu.
+        </p>
+        <p class="text-brown/85 leading-relaxed">
+          Es autor de siete libros sobre budismo y meditación, y dirige un programa internacional de estudios sobre las etapas de la meditación. Actualmente es director espiritual de centros en Estados Unidos y acompaña comunidades de práctica en América y Europa.
+        </p>
+        <p class="text-brown/85 leading-relaxed">
+          Bajo la guía de S.E. Garchen Rinpoche, impulsa proyectos humanitarios y de preservación del Dharma. Es reconocido por transmitir las enseñanzas budistas con claridad, sencillez y cercanía, haciéndolas accesibles para personas de cualquier cultura o tradición.
+        </p>
+
+        <div class="border border-brown/25 p-6 md:p-8">
+          <p class="text-xs uppercase tracking-wide text-brown/60 mb-3">¿Sabías que?</p>
+          <p class="font-serif text-xl mb-3">El linaje Drikung Kagyu</p>
+          <p class="text-brown/80 leading-relaxed text-sm">Conocido como "el linaje de la práctica", el Drikung Kagyu preserva una tradición ininterrumpida de más de 800 años de maestro a discípulo. Formado bajo la guía de S.E. Garchen Rinpoche, su transmisión se remonta a Vajradhara y continúa a través de Tilopa, Naropa, Marpa, Milarepa y Gampopa. Lo fundó en 1179 Jigten Sumgön, con el establecimiento del monasterio de Drikung Thil. Su legado reúne enseñanzas como el Gongchik, el Mahamudra de Cinco Ramas, los Seis Yogas de Naropa y el Phowa.</p>
+        </div>
+
+        <p class="text-xs text-brown-muted">Bio y cita tomadas del material oficial de prensa del Argentina Dharma Tour 2026. Foto: @KyleKesterson.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS -->
+<section id="experiencias" class="py-24 md:py-36 px-6 md:px-10 bg-brown/5">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="reveal font-serif text-center text-[9vw] md:text-6xl leading-[1.05] mb-6">
+      Tres formas de <span class="italic">sumarte</span>
+    </h2>
+    <p class="reveal reveal-delay-1 text-center text-brown/75 max-w-2xl mx-auto mb-16 md:mb-24">Elegí el encuentro que más resuene con vos, o sumate a los tres. Inscripción accesible y cupos limitados en cada sede.</p>
+
+    <!-- experiencia 1 -->
+    <div class="reveal grid md:grid-cols-[1fr_1.3fr] gap-8 md:gap-14 items-start mb-16 md:mb-20 pb-16 md:pb-20 border-b border-brown/20">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-2">Viernes 28 de agosto · Maschwitz</p>
+        <h3 class="font-serif text-3xl md:text-4xl mb-4">Enseñanzas de Dharma para toda la familia</h3>
+        <p class="text-sm text-brown/60 mb-6">Dhammapada Budismo Zen Argentina</p>
+        <a href="maschwitz/" class="inline-block border border-brown/40 px-6 py-3 text-sm hover:bg-brown hover:text-cream transition-colors">Sumarme al encuentro</a>
+      </div>
+      <div>
+        <p class="text-brown/85 leading-relaxed mb-4">Khempo abre su gira en Maschwitz, en la sede de Dhammapada Budismo Zen Argentina, con un encuentro de enseñanzas de Dharma abierto a toda la comunidad.</p>
+        <p class="text-brown/85 leading-relaxed mb-6">Pensado también para ir en familia: mientras los adultos participan de la enseñanza, hay un espacio infantil con actividades paralelas para los más chicos.</p>
+        <p class="text-sm text-brown/70"><span class="font-medium text-brown">Incluye:</span> enseñanzas de Dharma con Khempo, espacio infantil con actividades paralelas.</p>
+        <a href="https://www.instagram.com/budismozenarg/" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wide text-brown/60 hover:text-brown transition-colors">@budismozenarg ↗</a>
+      </div>
+    </div>
+
+    <!-- experiencia 2 -->
+    <div class="reveal grid md:grid-cols-[1fr_1.3fr] gap-8 md:gap-14 items-start mb-16 md:mb-20 pb-16 md:pb-20 border-b border-brown/20">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-2">Sábado 29 de agosto · Buenos Aires</p>
+        <h3 class="font-serif text-3xl md:text-4xl mb-4">Meditar caminando, en pleno centro de la ciudad</h3>
+        <p class="text-sm text-brown/60 mb-6">Jardín Botánico de Buenos Aires</p>
+        <a href="jardinbotanico/" class="inline-block border border-brown/40 px-6 py-3 text-sm hover:bg-brown hover:text-cream transition-colors">Sumarme al encuentro</a>
+      </div>
+      <div>
+        <p class="text-brown/85 leading-relaxed mb-4">En el corazón verde de Buenos Aires, Khempo guía una jornada de walking meditation y enseñanzas de Dharma al aire libre, entre los árboles centenarios del Jardín Botánico.</p>
+        <p class="text-brown/85 leading-relaxed mb-6">El día cierra con una Ceremonia de Toma de Refugio, para quienes quieran dar ese paso dentro de la tradición budista — sin ninguna obligación de participar si preferís solo acompañar la meditación y la enseñanza.</p>
+        <p class="text-sm text-brown/70"><span class="font-medium text-brown">Incluye:</span> walking meditation, enseñanzas de Dharma, ceremonia de Toma de Refugio.</p>
+        <a href="https://www.instagram.com/buenosairesjardin/?hl=es" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wide text-brown/60 hover:text-brown transition-colors">@buenosairesjardin ↗</a>
+      </div>
+    </div>
+
+    <!-- experiencia 3 -->
+    <div class="reveal grid md:grid-cols-[1fr_1.3fr] gap-8 md:gap-14 items-start">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-2">Domingo 30 de agosto · Miramar &amp; Mar del Plata</p>
+        <h3 class="font-serif text-3xl md:text-4xl mb-4">Del bosque al mar, en un mismo día</h3>
+        <p class="text-sm text-brown/60 mb-6">Bosque Energético (Miramar) · Playa Luna Roja (Mar del Plata)</p>
+        <a href="bosqueenergetico/" class="inline-block border border-brown/40 px-6 py-3 text-sm hover:bg-brown hover:text-cream transition-colors">Sumarme al cierre</a>
+      </div>
+      <div>
+        <p class="text-brown/85 leading-relaxed mb-4">El cierre de la gira, en dos tiempos. La mañana empieza en el Bosque Energético de Miramar, con terapia con árboles, walking meditation y enseñanzas de Dharma entre pinos centenarios.</p>
+        <p class="text-brown/85 leading-relaxed mb-6">El día termina en Playa Luna Roja, Mar del Plata, con una ceremonia del té y un último espacio de enseñanza junto al mar — el mismo recorrido que le da nombre a esta gira: del bosque al mar.</p>
+        <p class="text-sm text-brown/70"><span class="font-medium text-brown">Incluye:</span> terapia con árboles, walking meditation y enseñanzas de Dharma en Miramar; ceremonia del té y enseñanzas de Dharma en Mar del Plata.</p>
+        <a href="https://www.instagram.com/bosqueenergeticoguiadas/" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wide text-brown/60 hover:text-brown transition-colors">@bosqueenergeticoguiadas ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGUÍ EL RECORRIDO -->
+<section class="py-20 md:py-28 px-6 md:px-10">
+  <div class="max-w-3xl mx-auto text-center mb-12">
+    <h2 class="reveal font-serif text-[8vw] md:text-5xl leading-[1.05] mb-4">Seguí el recorrido</h2>
+    <p class="reveal reveal-delay-1 text-brown/75">Las cuentas de Khempo y de cada lugar que forma parte de la gira.</p>
+  </div>
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-4 text-center text-sm">
+    <a href="https://www.instagram.com/khenposamduprinpoche/" target="_blank" class="reveal border border-brown/25 px-4 py-6 hover:bg-brown hover:text-cream transition-colors">Khempo<br><span class="text-xs opacity-70">@khenposamduprinpoche</span></a>
+    <a href="https://www.instagram.com/modoflow" target="_blank" class="reveal reveal-delay-1 border border-brown/25 px-4 py-6 hover:bg-brown hover:text-cream transition-colors">Modo Flow<br><span class="text-xs opacity-70">organizador</span></a>
+    <a href="https://www.instagram.com/budismozenarg/" target="_blank" class="reveal reveal-delay-2 border border-brown/25 px-4 py-6 hover:bg-brown hover:text-cream transition-colors">Dhammapada Zen<br><span class="text-xs opacity-70">Maschwitz</span></a>
+    <a href="https://www.instagram.com/buenosairesjardin/?hl=es" target="_blank" class="reveal border border-brown/25 px-4 py-6 hover:bg-brown hover:text-cream transition-colors">Jardín Botánico<br><span class="text-xs opacity-70">Buenos Aires</span></a>
+    <a href="https://www.instagram.com/bosqueenergeticoguiadas/" target="_blank" class="reveal reveal-delay-1 border border-brown/25 px-4 py-6 hover:bg-brown hover:text-cream transition-colors">Bosque Energético<br><span class="text-xs opacity-70">Miramar</span></a>
+  </div>
+</section>
+
+<!-- INVITACIÓN A LA COMUNIDAD -->
+<section class="py-20 md:py-28 px-6 md:px-10 bg-brown text-cream">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="reveal font-serif text-[7vw] md:text-4xl leading-[1.1] mb-6">Invitación a la comunidad</h2>
+    <p class="reveal reveal-delay-1 text-cream/85 leading-relaxed mb-4">Invitamos a templos budistas, centros de Dharma y comunidades de toda Argentina a formar parte de la visita de Khenpo Samdup Rinpoche.</p>
+    <p class="reveal reveal-delay-1 text-cream/85 leading-relaxed mb-8">Una oportunidad para recibir las enseñanzas del linaje Drikung Kagyu, compartir la práctica y fortalecer los vínculos entre las distintas Sanghas.</p>
+    <p class="reveal reveal-delay-2 text-xs uppercase tracking-wide text-cream/60 mb-3">Para invitaciones y colaboración</p>
+    <p class="reveal reveal-delay-2 text-cream"><a href="mailto:info@modoflow.com" class="hover:opacity-70">info@modoflow.com</a> · <a href="https://wa.link/hkk2z6" target="_blank" class="hover:opacity-70">+54 9 11 6591-7122</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-24 md:py-36 px-6 md:px-10">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="reveal font-serif text-center text-[9vw] md:text-6xl leading-[1.05] mb-16 md:mb-20">
+      Preguntas <span class="italic">frecuentes</span>
+    </h2>
+
+    <div class="flex flex-col gap-4">
+      <div class="faq-item reveal border border-brown/25 px-6 md:px-8">
+        <button class="faq-toggle w-full flex items-center justify-between gap-6 py-6 text-left">
+          <span class="text-lg">¿Hace falta ser budista o tener experiencia en meditación?</span>
+          <span class="faq-icon text-2xl leading-none shrink-0">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brown/80 pb-6 leading-relaxed">No hace falta ser budista, ni tener experiencia previa, ni saber nada de antemano. Solo hace falta la disposición a estar presente. Vení como estés.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal border border-brown/25 px-6 md:px-8">
+        <button class="faq-toggle w-full flex items-center justify-between gap-6 py-6 text-left">
+          <span class="text-lg">¿Los encuentros tienen costo?</span>
+          <span class="faq-icon text-2xl leading-none shrink-0">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brown/80 pb-6 leading-relaxed">Sí, cada encuentro tiene una inscripción pensada para ser muy accesible. Dejanos tus datos en el formulario y te contamos el valor y los cupos disponibles del encuentro que te interese.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal border border-brown/25 px-6 md:px-8">
+        <button class="faq-toggle w-full flex items-center justify-between gap-6 py-6 text-left">
+          <span class="text-lg">¿Las fechas ya están confirmadas?</span>
+          <span class="faq-icon text-2xl leading-none shrink-0">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brown/80 pb-6 leading-relaxed">Sí. Los tres encuentros están confirmados por la organización: viernes 28 de agosto en Maschwitz, sábado 29 en el Jardín Botánico de Buenos Aires, y domingo 30 en Miramar y Mar del Plata.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal border border-brown/25 px-6 md:px-8">
+        <button class="faq-toggle w-full flex items-center justify-between gap-6 py-6 text-left">
+          <span class="text-lg">¿Puedo sumarme a más de un encuentro?</span>
+          <span class="faq-icon text-2xl leading-none shrink-0">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brown/80 pb-6 leading-relaxed">Sí. En el formulario podés marcar "los tres" y te ayudamos a organizar el recorrido completo, del bosque al mar.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal border border-brown/25 px-6 md:px-8">
+        <button class="faq-toggle w-full flex items-center justify-between gap-6 py-6 text-left">
+          <span class="text-lg">Represento a un templo, centro de Dharma o comunidad — ¿podemos participar?</span>
+          <span class="faq-icon text-2xl leading-none shrink-0">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brown/80 pb-6 leading-relaxed">Sí, la organización invita activamente a templos, centros y Sanghas de todo el país a sumarse. Escribinos a info@modoflow.com para coordinar la participación de tu comunidad.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal border border-brown/25 px-6 md:px-8">
+        <button class="faq-toggle w-full flex items-center justify-between gap-6 py-6 text-left">
+          <span class="text-lg">¿Cómo me contacto con la organización?</span>
+          <span class="faq-icon text-2xl leading-none shrink-0">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brown/80 pb-6 leading-relaxed">Podés escribir a info@modoflow.com o al +54 9 11 6591-7122 (Modo Flow &amp; AQRA), o completar el formulario de esta página.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="relative py-32 md:py-48 px-6 overflow-hidden flex items-center justify-center">
+  <img src="images/khempo-fuego.jpg" alt="Ceremonia con fuego" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-black/35"></div>
+  <div class="reveal relative z-10 bg-cream max-w-lg w-full mx-auto px-8 py-14 md:px-14 md:py-16 text-center -rotate-2 shadow-xl">
+    <h2 class="font-serif text-4xl md:text-5xl mb-6">Vení como estés</h2>
+    <p class="text-brown/80 leading-relaxed">No hace falta ser budista, ni tener experiencia en meditación, ni saber nada de antemano. Solo hace falta la disposición a estar presente.</p>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-24 md:py-36 px-6 md:px-10">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="reveal font-serif text-[9vw] md:text-6xl mb-6">Sumate a la gira</h2>
+    <p class="reveal reveal-delay-1 text-brown/75 max-w-xl mb-16">Dejanos tus datos y te contamos cómo sumarte a cualquiera de los tres encuentros.</p>
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+      <form class="reveal flex flex-col gap-6" onsubmit="event.preventDefault(); this.reset(); alert('¡Gracias! Te contactamos a la brevedad.');">
+        <div>
+          <label class="block text-sm mb-2">Nombre</label>
+          <input type="text" placeholder="Tu nombre" class="w-full border border-brown/30 bg-transparent px-4 py-3 placeholder:text-brown/40 focus:outline-none focus:border-brown">
+        </div>
+        <div>
+          <label class="block text-sm mb-2">Email</label>
+          <input type="email" placeholder="tumail@ejemplo.com" class="w-full border border-brown/30 bg-transparent px-4 py-3 placeholder:text-brown/40 focus:outline-none focus:border-brown">
+        </div>
+        <div>
+          <label class="block text-sm mb-2">WhatsApp</label>
+          <input type="tel" placeholder="+54 9 11 ...." class="w-full border border-brown/30 bg-transparent px-4 py-3 placeholder:text-brown/40 focus:outline-none focus:border-brown">
+        </div>
+        <div>
+          <label class="block text-sm mb-2">¿Qué encuentro te interesa?</label>
+          <select class="w-full border border-brown/30 bg-transparent px-4 py-3 focus:outline-none focus:border-brown">
+            <option>Seleccioná…</option>
+            <option>Maschwitz — Dhammapada Budismo Zen</option>
+            <option>Buenos Aires — Jardín Botánico</option>
+            <option>Miramar &amp; Mar del Plata</option>
+            <option>Los tres</option>
+            <option>Represento a un templo/centro/comunidad</option>
+          </select>
+        </div>
+        <button type="submit" class="border border-brown/40 py-3 hover:bg-brown hover:text-cream transition-colors">Enviar</button>
+      </form>
+      <img src="images/khempo.jpeg" alt="Khenpo Samdup Rinpoche" class="reveal reveal-delay-1 w-full h-80 md:h-full object-cover object-top">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-6 md:px-10 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-4">Explorar</p>
+        <div class="flex flex-col gap-2 font-serif text-xl">
+          <a href="#gira" class="hover:opacity-70">La Gira</a>
+          <a href="#khempo" class="hover:opacity-70">Sobre Khempo</a>
+          <a href="#experiencias" class="hover:opacity-70">Experiencias</a>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-4">Redes</p>
+        <div class="flex flex-col gap-2 font-serif text-xl">
+          <a href="https://www.instagram.com/khenposamduprinpoche/" target="_blank" class="hover:opacity-70">Khempo</a>
+          <a href="https://www.instagram.com/garchensanghamx/" target="_blank" class="hover:opacity-70">Garchen Sangha MX</a>
+          <a href="https://www.instagram.com/modoflow" target="_blank" class="hover:opacity-70">Modo Flow</a>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-4">Organizan</p>
+        <p class="mb-6">Modo Flow &amp; AQRA</p>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-4">Email</p>
+        <a href="mailto:info@modoflow.com" class="hover:opacity-70">info@modoflow.com</a>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-brown/60 mb-4">WhatsApp</p>
+        <a href="https://wa.link/hkk2z6" target="_blank" class="block mb-1 hover:opacity-70">+54 9 11 6591-7122</a>
+        <p class="text-brown/70 mb-6">28, 29 y 30 de agosto, 2026</p>
+      </div>
+    </div>
+    <div class="border-t border-brown/20 pt-6 flex flex-col md:flex-row justify-between gap-4 text-sm text-brown/70">
+      <p>Argentina Dharma Tour 2026 · Organizan Modo Flow &amp; AQRA</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // header: white-on-photo at top, hides while scrolling through the hero,
+  // then reappears already switched to solid+brown once past it
+  const mainHeader = document.getElementById('mainHeader');
+  const heroSection = document.getElementById('hero');
+  function updateHeader() {
+    const scrollY = window.scrollY;
+    const threshold = (heroSection ? heroSection.offsetHeight : window.innerHeight) - 80;
+    if (scrollY > threshold) {
+      mainHeader.classList.add('is-scrolled');
+      mainHeader.classList.remove('header-hidden');
+    } else if (scrollY > 10) {
+      mainHeader.classList.add('header-hidden');
+      mainHeader.classList.remove('is-scrolled');
+    } else {
+      mainHeader.classList.remove('header-hidden');
+      mainHeader.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  window.addEventListener('resize', updateHeader);
+  updateHeader();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-toggle');
+    const icon = item.querySelector('.faq-icon');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      faqItems.forEach(i => { i.classList.remove('open'); i.querySelector('.faq-icon').textContent = '+'; });
+      if (!isOpen) { item.classList.add('open'); icon.textContent = '×'; }
+    });
+  });
+</script>
+
+</body>
+</html>
